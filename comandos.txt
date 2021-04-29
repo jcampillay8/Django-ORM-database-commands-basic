@@ -1,0 +1,58 @@
+########### ARCHIVO MODELS.PY ## ##########################
+
+from django.db import models
+
+class Users(models.Model):
+    first_name=models.CharField(max_length=255)
+    last_name=models.CharField(max_length=255)
+    email_address = models.EmailField()
+    age = models.CharField(max_length=3)
+
+############### COMANDOS #################################
+
+1) Ejecuta el shell e importe su modelo de usuario
+
+	python manage.py shell
+	from apps.lab_01.models import Users
+
+2) Consulta: Crear 3 nuevos usuarios
+
+    user01 =Users.objects.create(first_name='Jaime',last_name='Campillay', email_address='jaime@gamil.com',age='33')
+
+    user02 =Users.objects.create(first_name='Sofia',last_name='Rosaio', email_address='sofia@gamil.com',age='20')
+
+    user03 =Users(first_name='Benja',last_name='Estefano', email_address='benja@gamil.com',age='20')
+    user03.save()
+
+3) Consulta: recuperar todos los usuarios
+
+    Users.objects.all()
+
+4) Consulta: recuperar el último usuario
+
+    Users.objects.last()
+
+5) Consulta: recuperar el primer usuario
+
+    Users.objects.first()
+
+6) Consulta: Cambie el usuario con id = 3 para que su apellido sea Pancakes.
+
+    user03.last_name='Pancakes'
+    user03.save()
+
+7) Consulta: Eliminar el usuario con id = 2 de la base de datos
+
+    user4=Users.objects.get(id=2)
+    user4.delete()
+
+8) Consulta: Obtenga todos los usuarios, ordenados por su nombre
+
+    Users.objects.order_by('first_name')
+
+9) BONUS Query: obtén todos los usuarios, ordenados por su nombre en orden descendente
+
+    Users.objects.order_by('-first_name')
+
+
+
